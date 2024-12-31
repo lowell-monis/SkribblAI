@@ -9,9 +9,11 @@ class Neuron:
 
 
     def forward(self, inputs):
-        # Do the dot product calculations here
-
+ 
         self.output = 0
-        # Continue with the dot product calculations here
+        for i, weight in zip(inputs, self.weights):
+            self.output += weight*i
+        
+        self.output += self.bias
 
         return self.output
