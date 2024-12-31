@@ -1,5 +1,5 @@
 import numpy as np
-from neuron_definition import Neuron
+from neural_network import Neuron
 
 def test_neuron_forward():
     # Test case 1: Known weights and bias
