@@ -22,15 +22,14 @@ class Layer:
     def __init__(self, num_inputs, num_neurons):
         self.num_inputs = num_inputs
         self.num_neurons = num_neurons
-
-        # Creating the neurons
-        # Here, create the number of neurons required and store them in a list
-
         self.outputs = []
+        self.neurons = []
+        for i in range(num_neurons):
+            self.neurons.append(Neuron(self.num_inputs))
 
     def forward(self, inputs):
-        
-        # Take the inputs and pass them each neuron's forward functions and store the outputs in the self.outputs list
+        for neuron in self.neurons:
+            self.outputs.append(neuron.forward(inputs))
 
 class NeuralNetwork:
     def __init__(self, num_inputs, num_hidden_layers, num_hidden_layer_neurons, num_outputs):
