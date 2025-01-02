@@ -38,17 +38,18 @@ class NeuralNetwork:
         self.num_hidden_layer_neurons = num_hidden_layer_neurons
         self.num_outputs = num_outputs
 
-        # Now that we have all the required variables, go ahead and create the layers
-        # Always remember that we do NOT need to create a layer for the inputs. The initial
-        # inputs that we get make up the first input layer. So, we start from the first hidden
-        # layer and create layers all the way up to the last (output) layer
         self.layers = []
-
-        # Create the appropriate number of hidden layers each with the appropriate number of neurons
-        # At the end, create the output layer
-
+        
+        # Create first hidden layer (takes inputs from input layer)
+        self.layers.append(Layer(num_inputs, num_hidden_layer_neurons))
+         # Create remaining hidden layers
+        for _ in range(num_hidden_layers - 1):
+            self.layers.append(Layer(num_hidden_layer_neurons, num_hidden_layer_neurons))
+        # Create output layer
+        self.layers.append(Layer(num_hidden_layer_neurons, num_outputs))
     def forward(self, inputs):
-        # Take the inputs and pass those inputs to each layer in the network
-        # Tip, use a for loop and one variable to keep track of the outputs of a single layer
-        # Keep updating that single variable with the outputs of the layers
-        # At the end, whatever is in that variable will be the output of the last layer
+        # Pass through each layer
+        for layer in self.layers:
+            layer_outputs = layer.forward(inputs)
+            
+        return layer_outputs
